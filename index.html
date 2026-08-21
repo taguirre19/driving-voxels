@@ -127,7 +127,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop is-centered has-text-centered">
     <div class="hero-body">
-      <img src="./static/images/teaser_lr.png"/>
+      <img src="./static/images/image_teaser_snipping.png"/>
       <p>
         <strong>Dynamic Driving Scene Reconstruction and Decomposition.</strong> 
         Compared to state-of-the-art methods like StreetGS (left), DrivingVoxels (center) eliminates floating artifacts and geometric degradation—achieving superior accuracy ($\mathbf{\text{CD}\,=\,0.06}$, $\mathbf{\text{F1}\,=\,59.9\%}$) and a $\mathbf{3.3\times}$ speedup (30 vs. 102 min)—while cleanly decoupling static backgrounds from dynamic actors via compositional multi-octree formulation (right).
@@ -174,7 +174,7 @@
     <!-- Main Results Table/Image -->
     <div class="columns is-centered">
       <div class="column is-full-width has-text-centered">
-        <img src="./static/images/main_table.png" alt="DrivingVoxels Main Results Table" style="width: 100%; height: auto; max-width: 900px; margin-bottom: 2rem;"/>
+        <img src="./static/images/main_table_clean.png" alt="DrivingVoxels Main Results Table" style="width: 100%; height: auto; max-width: 900px; margin-bottom: 2rem;"/>
       </div>
     </div>
 
@@ -202,6 +202,159 @@
   </div>
 </section>
 
+
+<!-- Novel View Synthesis Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Title & Description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Novel View Synthesis</h2>
+        <div class="content has-text-justified">
+          <p>
+            DrivingVoxels reaches the lowest FID under a 2 m lateral shift, preserving clean scene geometry and avoiding the visual artifacts seen in StreetGS.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NVS Table Graphic -->
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <img src="./static/images/NVS_table_clean.png" alt="Novel View Synthesis Comparison Table" style="width:50%; height: auto; margin-bottom: 1.5rem;"/>
+      </div>
+    </div>
+
+    <!-- NVS Comparison Video -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="publication-video">
+          <video autoplay muted loop playsinline controls preload="auto">
+            <source src="./static/videos/output_NVS_lr.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 3D Segmentation Application Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Title & Description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Application: 3D Segmentation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Fusing multi-view SegFormer predictions across our sparse voxel volume improves spatial consistency and boundary alignment over raw 2D segmentation, particularly on roads, vegetation, and thin structures.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Segmentation Video -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <video poster="" id="segmentation-video" autoplay controls muted loop playsinline height="100%" style="width: 100%; height: auto; display: block; border-radius: 10px;">
+          <source src="./static/videos/comparison_semantics_lr.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Open-Vocabulary Grounding Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Title & Polished Description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Application: Open-Vocabulary 3D Grounding</h2>
+        <div class="content has-text-justified">
+          <p>
+            By distilling language-aligned embeddings into the explicit voxel representation, DrivingVoxels enables zero-shot text query localization (e.g., <em>“Crosswalk”</em>, <em>“Traffic Light”</em>) with precise 3D spatial consistency across complex driving scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side-by-Side Compact Video Grid -->
+    <div class="columns is-centered is-vcentered">
+      
+      <!-- Video 1 -->
+      <div class="column is-6">
+        <div class="has-text-centered">
+          <video autoplay muted loop playsinline controls style="width: 100%; border-radius: 8px; display: block;">
+            <source src="./static/videos/cross_walk_lr.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="is-size-6 has-text-grey mt-2">Query: <em>"Crosswalk"</em></p>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="column is-6">
+        <div class="has-text-centered">
+          <video autoplay muted loop playsinline controls style="width: 100%; border-radius: 8px; display: block;">
+            <source src="./static/videos/traffic_light_lr.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="is-size-6 has-text-grey mt-2">Query: <em>"Traffic Light"</em></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Cross-Dataset Generalization Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Title & Polished Description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Cross-Dataset Generalization</h2>
+        <div class="content has-text-justified">
+          <p>
+            To evaluate zero-shot transfer and robustness across sensor setups, DrivingVoxels is tested on dynamic 80-frame sequences from the Waymo Open Dataset—maintaining sharp dynamic actor decomposition and consistent novel view rendering without fine-tuning.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Video Carousel -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div id="waymo-carousel" class="carousel results-carousel">
+          
+          <div class="item">
+            <video autoplay muted loop playsinline controls height="100%">
+              <source src="./static/videos/waymo_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          
+          <div class="item">
+            <video autoplay muted loop playsinline controls height="100%">
+              <source src="./static/videos/waymo_2.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 <!-- <section class="section" id="BibTeX">
