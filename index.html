@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Scene Reconstruction for urban dynamic scenes using voxels as primitives.">
+  <meta name="keywords" content="Driving Reconstruction, SVRaster, 3DGS, NVS, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DrivingVoxels</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">DrivingVoxels: Compositional Sparse Voxel Rasterization for Dynamic Driving Scene Reconstruction</h1>
+          <h2 class="subtitle is-3" style="margin-top:1rem"> BMVC 2026</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Tania Aguirre</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=bRgp2lUAAAAJ">Luis Roldão</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=0jLPiLYAAAAJ">Moussab Bennehar</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=S3zYmOYAAAAJ">Nathan Piasco</a><sup>1</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=fjUPMcYAAAAJ">Dzmitry Tsishkou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=lTt86awAAAAJ&hl">Simone Rossi</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=mlx1eCgAAAAJ&hl">Pietro Michardi</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Noah's Ark, Huawei Paris Research Center, France</span><br>
+            <span class="author-block"><sup>2</sup>EURECOM, France</span><br>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2606.23031"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/taguirre19/driving-voxels"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop is-centered has-text-centered">
+    <div class="hero-body">
+      <img src="./static/images/teaser_lr.png"/>
+      <p>
+        <strong>Dynamic Driving Scene Reconstruction and Decomposition.</strong> 
+        Compared to state-of-the-art methods like StreetGS (left), DrivingVoxels (center) eliminates floating artifacts and geometric degradation—achieving superior accuracy ($\mathbf{\text{CD}\,=\,0.06}$, $\mathbf{\text{F1}\,=\,59.9\%}$) and a $\mathbf{3.3\times}$ speedup (30 vs. 102 min)—while cleanly decoupling static backgrounds from dynamic actors via compositional multi-octree formulation (right).
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Reconstructing dynamic urban scenes remains challenging due to the unbounded nature of driving environments and the presence of multiple dynamic objects.
+          Currently, potentially faster sparse voxel methods are mainly designed for static scenarios. On the other hand, dynamic approaches based on 3D Gaussian Splatting, despite their high-fidelity, are often time-consuming for driving scenarios and exhibit uncontrollable memory growth in large scenes. 
+          To address these limitations, we present DrivingVoxels, a compositional sparse voxel rendering framework for dynamic driving scenes. Our method jointly rasterizes sparse voxels from multiple independent octrees within a single rendering pass. Each rigid dynamic object is represented by an octree defined in its local coordinate frame, while a separate static octree models the stationary background. DrivingVoxels adopts a fully explicit, neural-free representation together with a LiDAR-guided structural initialization that efficiently captures scene geometry. We evaluate our framework on the PandaSet benchmark, 
+          demonstrating that DrivingVoxels performs on par on perceptual metrics and better on structural metrics for NVS and reconstruction—while requiring shorter training times than previous 3DGS-base methods thanks to an efficient optimization workflow anchored by a strong LiDAR prior.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<!-- Main Results Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Section Title & Description -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Main Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            On ten dynamic PandaSet sequences, DrivingVoxels achieves the best geometric accuracy and competitive perceptual quality with significantly faster training speed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Results Table/Image -->
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <img src="./static/images/main_table.png" alt="DrivingVoxels Main Results Table" style="width: 100%; height: auto; max-width: 900px; margin-bottom: 2rem;"/>
+      </div>
+    </div>
+
+    <!-- Weather-Cyclone Style Video Carousel -->
+    <div>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/comparison_84.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/comparison_106.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/comparison_123.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+ -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="content">
+        <p>
+          We thank <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the website template.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
